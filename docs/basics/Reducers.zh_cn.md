@@ -28,7 +28,7 @@ For our todo app, we want to store two different things:
 
 You'll often find that you need to store some data, as well as some UI state, in the state tree. This is fine, but try to keep the data separate from the UI state.
 
-你经常会发现需要在状态树中存储一些数据以及一些UI状态。没问题，但需要将数据与UI状态分开。
+你经常会发现需要在状态树中存储一些数据以及一些 UI 状态。没问题，但需要将数据与 UI 状态分开。
 
 ```js
 {
@@ -50,7 +50,7 @@ You'll often find that you need to store some data, as well as some UI state, in
 
 > In a more complex app, you're going to want different entities to reference each other. We suggest that you keep your state as normalized as possible, without any nesting. Keep every entity in an object stored with an ID as a key, and use IDs to reference it from other entities, or lists. Think of the app's state as a database. This approach is described in [normalizr's](https://github.com/paularmstrong/normalizr) documentation in detail. For example, keeping `todosById: { id -> todo }` and `todos: array<id>` inside the state would be a better idea in a real app, but we're keeping the example simple.
 >
-> 在一些更复杂的应用中，你需要不同的实体之间进行相互引用。我们建议你保持 state 越普通越好，不要有任何嵌套。将每个实体以带 ID 为主键的对象进行存储，并用 ID 来进行相互引用。把应用的 state 想象成一个数据库。[normalizr's](https://github.com/paularmstrong/normalizr) 的文档中详细描述了这种方法。例如，在真实的应用中使用 `todosById: { id -> todo }` 和 `todos: array<id>` 这种结构会更好，但在这里我们为了简化示例而没有这么做。
+> 在一些更复杂的应用中，你需要不同的实体之间进行相互引用。我们建议你保持 state 越常规化越好，不要有任何嵌套。将每个实体以带 ID 为主键的对象进行存储，并用 ID 来进行相互引用。把应用的 state 想象成一个数据库。[normalizr's](https://github.com/paularmstrong/normalizr) 的文档中详细描述了这种方法。例如，在真实的应用中使用 `todosById: { id -> todo }` 和 `todos: array<id>` 这种结构会更好，但在这里我们为了简化示例而没有这么做。
 
 ## Handling Actions
 
@@ -69,17 +69,21 @@ It's called a reducer because it's the type of function you would pass to [`Arra
 - Mutate its arguments;
 - 对参数进行修改；
 - Perform side effects like API calls and routing transitions;
-- 执行具有副作用的操作如 API 调用和路由切换；
+- 执行具有副作用（异步调用）的操作如 API 调用和路由切换；
 - Call non-pure functions, e.g. `Date.now()` or `Math.random()`.
 - 调用不纯的函数，如 `Date.now()` 或 `Math.random()` 之类的
 
 We'll explore how to perform side effects in the [advanced walkthrough](../advanced/README.md). For now, just remember that the reducer must be pure. **Given the same arguments, it should calculate the next state and return it. No surprises. No side effects. No API calls. No mutations. Just a calculation.**
 
-在 [高级部分](../advanced/README.md) 我们会讲到如何执行具有副作用的操作。但是现在，只需要记住 reducer 必须保持纯净。即**给定相同的参数，它就会计算并返回下一个 state。没有彩蛋，没有副作用，没有 API 调用，不会修改参数，只执行计算。**
+在 [高级部分](../advanced/README.md) 我们会讲到如何执行具有副作用的操作。但是现在，只需要记住 reducer 必须保持纯净。即**给定相同的参数，它就会计算并返回下一个 state。没有彩蛋，没有副作用，没有 API 调用，不会修改参数，只是执行计算。**
 
 With this out of the way, let's start writing our reducer by gradually teaching it to understand the [actions](Actions.md) we defined earlier.
 
+以此为前提，我们开始编写 reducer，并逐步教会它理解我们之前定义的 [actions](Actions.md)。
+
 We'll start by specifying the initial state. Redux will call our reducer with an `undefined` state for the first time. This is our chance to return the initial state of our app:
+
+我们将从给 state 指定初始值开始。在 Redux 第一次调用 reducer 时，state 为 `undefined`。我们可以利用这一点来返回应用所需的初始 state 值：
 
 ```js
 import { VisibilityFilters } from './actions'
