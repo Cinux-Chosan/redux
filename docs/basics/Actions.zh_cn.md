@@ -145,7 +145,7 @@ The `dispatch()` function can be accessed directly from the store as [`store.dis
 
 Action creators can also be asynchronous and have side-effects. You can read about [async actions](../advanced/AsyncActions.md) in the [advanced tutorial](../advanced/README.md) to learn how to handle AJAX responses and compose action creators into async control flow. Don't skip ahead to async actions until you've completed the basics tutorial, as it covers other important concepts that are prerequisite for the advanced tutorial and async actions.
 
-Action 创建器也可以是异步的并且可以有副作用（即不纯）。你可以阅读[高级手册](../advanced/README.md) 中关于 [异步 actions](../advanced/AsyncActions.md) 的部分来学习如何处理 AJAX 响应和将 action 创建器组合到异步控制流中。不要在没有完成基本概念部分的时候就跳到异步 action 部分去，因为基本概念中还包含了一些其他重要概念，这些概念是高级教程和异步操作的先决条件。
+Action 创建器也可以是异步的并且可以有副作用（也指异步操作）。你可以阅读 [高级手册](../advanced/README.md) 中关于 [异步 actions](../advanced/AsyncActions.md) 的部分来学习如何处理 AJAX 响应和将 action 创建器组合到异步控制流中。不过不要在没有完成基本概念部分的时候就跳到异步 action 部分去，因为基本概念中还包含了一些其他重要概念，这些概念是高级教程和异步操作的先决条件。
 
 ## Source Code
 
